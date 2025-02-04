@@ -86,6 +86,18 @@ select album,SUM(views)
 FROM spotify
 group by 1
 
+
+
+-- 5.Retrieve the track names that have been streamed on Spotify more than YouTube.
+
+select *from spotify
+
+SELECT track,most_played_on FROM spotify 
+WHERE most_played_on LIKE '%Spotify%'
+
+
+
+
 /*
 
 
@@ -97,7 +109,6 @@ group by 1
 
 
 
--- Retrieve the track names that have been streamed on Spotify more than YouTube.
 -- Advanced Level
 -- Find the top 3 most-viewed tracks for each artist using window functions.
 -- Write a query to find tracks where the liveness score is above the average.
