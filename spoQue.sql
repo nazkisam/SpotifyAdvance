@@ -114,6 +114,21 @@ SELECT track,av,liveness
 FROM spotify , average_liveness
 WHERE average_liveness.av < spotify.liveness
 
+
+-- 3.Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
+
+WITH diff AS(
+SELECT album,
+MAX(energy) AS max_energy,
+MIN(energy) AS min_energy
+FROM spotify
+GROUP BY 1
+)
+SELECT album, max_energy - min_energy as difference
+FROM diff
+ORDER BY 2 DESC;
+
+
 /*
 
 
@@ -128,7 +143,7 @@ WHERE average_liveness.av < spotify.liveness
 
 
 
--- Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
+
 -- Find tracks where the energy-to-liveness ratio is greater than 1.2.
 -- Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
 
