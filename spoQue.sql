@@ -103,6 +103,17 @@ RANK() OVER(PARTITION BY artist ORDER BY views DESC) AS top_songs
 FROM spotify) AS ranked_songs
 WHERE top_songs <= 3
 
+
+-- 2.Write a query to find tracks where the liveness score is above the average.
+
+WITH average_liveness AS
+( 
+  SELECT AVG (liveness) AS av FROM spotify
+)
+SELECT track,av,liveness
+FROM spotify , average_liveness
+WHERE average_liveness.av < spotify.liveness
+
 /*
 
 
@@ -115,7 +126,8 @@ WHERE top_songs <= 3
 
 
 
--- Write a query to find tracks where the liveness score is above the average.
+
+
 -- Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
 -- Find tracks where the energy-to-liveness ratio is greater than 1.2.
 -- Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
