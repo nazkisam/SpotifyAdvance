@@ -129,22 +129,20 @@ FROM diff
 ORDER BY 2 DESC;
 
 
+-- 4.Find tracks where the energy-to-liveness ratio is greater than 1.2.
+SELECT track,ratio FROM
+(SELECT track, energy/liveness as ratio 
+FROM spotify) AS r
+WHERE ratio > 1.2
+
+
+
+
+
+
 /*
 
 
-
-
-
-
-
-
-
-
-
-
-
-
--- Find tracks where the energy-to-liveness ratio is greater than 1.2.
 -- Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
 
 */
