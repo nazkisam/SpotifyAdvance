@@ -81,8 +81,10 @@ LIMIT 5;
 SELECT track , views, likes FROM spotify
 WHERE official_video = TRUE
 
-
-
+-- 4.For each album, calculate the total views of all associated tracks.
+select album,SUM(views)
+FROM spotify
+group by 1
 
 /*
 
@@ -94,7 +96,7 @@ WHERE official_video = TRUE
 
 
 
--- For each album, calculate the total views of all associated tracks.
+
 -- Retrieve the track names that have been streamed on Spotify more than YouTube.
 -- Advanced Level
 -- Find the top 3 most-viewed tracks for each artist using window functions.
