@@ -77,8 +77,9 @@ GROUP BY track
 ORDER BY 2 DESC
 LIMIT 5;
 
-
-
+-- 3.List all tracks along with their views and likes where official_video = TRUE.
+SELECT track , views, likes FROM spotify
+WHERE official_video = TRUE
 
 
 
@@ -92,7 +93,7 @@ LIMIT 5;
 
 
 
--- List all tracks along with their views and likes where official_video = TRUE.
+
 -- For each album, calculate the total views of all associated tracks.
 -- Retrieve the track names that have been streamed on Spotify more than YouTube.
 -- Advanced Level
