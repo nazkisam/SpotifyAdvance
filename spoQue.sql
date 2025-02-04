@@ -1,38 +1,95 @@
 CREATE TABLE spotify(
 Artist VARCHAR(255),
-	Track VARCHAR(255),
-  	Album VARCHAR(255),
-    	Album_type VARCHAR(50),
-      	Danceability FLOAT,
-        	Energy FLOAT,
-          	Loudness FLOAT,
-            	Speechiness	FLOAT,
-              Acousticness FLOAT,	
-              Instrumentalness FLOAT,
-              	Liveness FLOAT,
-                	Valence FLOAT,
-                  	Tempo FLOAT,
-                    	Duration_min	FLOAT,
-                       Title VARCHAR(255),
-                       	Channel VARCHAR(255),
-                        	Views FLOAT,	
-                          Likes BIGINT,
-                          	Comments BIGINT,
-                            	Licensed BOOLEAN,
-                              	official_video BOOLEAN,
-                                	Stream BIGINT,	
-                                  EnergyLiveness FLOAT,	
-                                  most_played_on VARCHAR(50) 
+Track VARCHAR(255),
+Album VARCHAR(255),
+Album_type VARCHAR(50),
+Danceability FLOAT,
+Energy FLOAT,
+Loudness FLOAT,
+Speechiness	FLOAT,
+Acousticness FLOAT,	
+Instrumentalness FLOAT,
+Liveness FLOAT,
+Valence FLOAT,
+Tempo FLOAT,
+Duration_min	FLOAT,
+Title VARCHAR(255),
+Channel VARCHAR(255),
+Views FLOAT,	
+Likes BIGINT,
+Comments BIGINT,
+Licensed BOOLEAN,
+official_video BOOLEAN,
+Stream BIGINT,	
+EnergyLiveness FLOAT,	
+most_played_on VARCHAR(50) 
 )
 
 /COPY spotify FROM 'D:\PLCPP\SQL\newproject\spotify\cleaned_dataset.csv'
 DELIMITER ','
 CSV HEADER
 
-
+--Exploring the data -EDA
 SELECT *FROM spotify
 
+SELECT COUNT(DISTINCT album) FROM spotify
+
+SELECT COUNT(DISTINCT artist) FROM spotify
+
+                          -- Easy Level
+-- 1:Retrieve the names of all tracks that have more than 1 billion streams.
+ 
+SELECT track,artist FROM spotify 
+WHERE stream > 1000000000
+
+
+-- 2.List all albums along with their respective artists.
+SELECT DISTINCT album,artist FROM spotify
+
+
+-- 3.Get the total number of comments for tracks where licensed = TRUE.
+SELECT comments,track FROM spotify
+WHERE licensed = TRUE 
+GROUP BY 1,2
+
+-- 4.Find all tracks that belong to the album type single.
+SELECT track,album FROM
+spotify
+WHERE album LIKE '%Single%' ;
+
+
+-- 5.Count the total number of tracks by each artist.
+SELECT DISTINCT artist, COUNT(track)
+FROM spotify
+GROUP BY 1
+ORDER BY 2 DESC;
 
 
 
 
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+-- Medium Level
+-- Calculate the average danceability of tracks in each album.
+-- Find the top 5 tracks with the highest energy values.
+-- List all tracks along with their views and likes where official_video = TRUE.
+-- For each album, calculate the total views of all associated tracks.
+-- Retrieve the track names that have been streamed on Spotify more than YouTube.
+-- Advanced Level
+-- Find the top 3 most-viewed tracks for each artist using window functions.
+-- Write a query to find tracks where the liveness score is above the average.
+-- Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
+
+
+*/
