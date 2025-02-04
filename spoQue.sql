@@ -64,8 +64,18 @@ FROM spotify
 GROUP BY 1
 ORDER BY 2 DESC;
 
+                         -- Medium Level
+-- 1.Calculate the average danceability of tracks in each album.
+ SELECT AVG(danceability),album
+ FROM spotify
+ GROUP BY 2
 
 
+-- 2.Find the top 5 tracks with the highest energy values.
+SELECT track, MAX(energy) FROM spotify
+GROUP BY track
+ORDER BY 2 DESC
+LIMIT 5;
 
 
 
@@ -80,9 +90,8 @@ ORDER BY 2 DESC;
 
 
 
--- Medium Level
--- Calculate the average danceability of tracks in each album.
--- Find the top 5 tracks with the highest energy values.
+
+
 -- List all tracks along with their views and likes where official_video = TRUE.
 -- For each album, calculate the total views of all associated tracks.
 -- Retrieve the track names that have been streamed on Spotify more than YouTube.
