@@ -95,8 +95,13 @@ select *from spotify
 SELECT track,most_played_on FROM spotify 
 WHERE most_played_on LIKE '%Spotify%'
 
-
-
+                   -- Advanced Level
+-- 1.Find the top 3 most-viewed tracks for each artist using window functions.
+SELECT artist,track,top_songs FROM
+(SELECT artist,track,
+RANK() OVER(PARTITION BY artist ORDER BY views DESC) AS top_songs
+FROM spotify) AS ranked_songs
+WHERE top_songs <= 3
 
 /*
 
@@ -109,10 +114,10 @@ WHERE most_played_on LIKE '%Spotify%'
 
 
 
--- Advanced Level
--- Find the top 3 most-viewed tracks for each artist using window functions.
+
 -- Write a query to find tracks where the liveness score is above the average.
 -- Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
-
+-- Find tracks where the energy-to-liveness ratio is greater than 1.2.
+-- Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
 
 */
